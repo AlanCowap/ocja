@@ -1,0 +1,21 @@
+public class GarageApp{
+
+	private static final int MAX_NUM_CARS = 100;
+	private Car[] cars = new Car[MAX_NUM_CARS];
+
+	public static void main(String[] args){
+		System.out.println("Hello world");
+		new GarageApp().createCars();
+		
+	}
+
+	private void createCars(){
+		for(int i=0; i < MAX_NUM_CARS; ++i){
+			cars[i] = new Car("VIN:"+ (i), "142-D-" + (i));
+		}
+		for(int i=0; i < MAX_NUM_CARS; ++i){
+			System.out.println(cars[i]);
+		}
+	}
+
+}
