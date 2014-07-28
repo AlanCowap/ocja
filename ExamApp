@@ -4,7 +4,7 @@ public class ExamApp{
 		System.out.println("Hello world");
 		ExamApp ea = new ExamApp();
 		Person[] classMembers = ea.createClass();
-		if (null != classMembers && ea.outputClass(classMembers)) ;
+		if (null != classMembers) ea.outputClass(classMembers);
 	}
 
 	private Person[] createClass(){
