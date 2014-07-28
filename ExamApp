@@ -1,0 +1,43 @@
+//Show the usage of 1D Arrays
+public class ExamApp{
+	public static void main(String[] args){
+		System.out.println("Hello world");
+		ExamApp ea = new ExamApp();
+		Person[] classMembers = ea.createClass();
+		if (null != classMembers && ea.outputClass(classMembers)) ;
+	}
+
+	private Person[] createClass(){
+		String[] classNames = {"Gordon", "Amir", "Jason", "Colin"};
+		int[] classScores = {100, 100, 100, 100};
+		Person[] classMembers = new Person[classNames.length];
+
+		for(int i=0; i < classNames.length; ++i){
+			classMembers[i] = new Person(i, classNames[i], classScores[i]);
+		}		
+		return classMembers;
+	}
+
+	private void outputClass(Person[] classMembers){
+		for(Person p : classMembers){
+			System.out.println(p);
+		}
+	}
+	
+}
+
+class Person{
+	private int id;
+	private String name;
+	private int score;
+
+	public Person(int id, String name, int score){
+		this.id = id;
+		this.name = name;
+		this.score = score;
+	}
+
+	public String toString(){
+		return (this.id +" "+ this.name +" "+ this.score);
+	}
+}
