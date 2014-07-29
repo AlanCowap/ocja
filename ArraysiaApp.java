@@ -2,9 +2,14 @@
  * Elisa is lost in the 3D world of Arraysia - can you find her?
  *	
  * @author Alan Cowap
+ * @version 1.1 Allow for different size for array dimensions
 */
-public class ArraysiaApp{	
-	private boolean[][][] arraysia = new boolean[100][100][100];
+public class ArraysiaApp{
+	private static final int X_SIZE = 100;
+	private static final int Y_SIZE = 100;
+	private static final int Z_SIZE = 100;
+	
+	private boolean[][][] arraysia = new boolean[X_SIZE][Y_SIZE][Z_SIZE];
 
 	public static void main(String[] args){
 		ArraysiaApp arr = new ArraysiaApp();
@@ -19,9 +24,9 @@ public class ArraysiaApp{
 	 * 
 	*/	
 	private void hideElisa(){
-		int x = (int) (Math.random()*100);
-		int y = (int) (Math.random()*100);
-		int z = (int) (Math.random()*100);
+		int x = (int) (Math.random()*X_SIZE);
+		int y = (int) (Math.random()*Y_SIZE);
+		int z = (int) (Math.random()*Z_SIZE);
 		arraysia[x][y][z] = true;
 		//System.out.println(x +","+ y +","+ z);
 	}
