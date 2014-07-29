@@ -1,4 +1,9 @@
-//Show the usage of 1D Arrays
+/**
+ * Show the usage of 2D Arrays
+ *	
+ * @author Alan Cowap
+ * @version 1.1 Allow for an array of scores (rather than a single score)
+*/
 public class ExamApp{
 	public static void main(String[] args){
 		System.out.println("Hello world");
@@ -9,7 +14,7 @@ public class ExamApp{
 
 	private Person[] createClass(){
 		String[] classNames = {"Gordon", "Amir", "Jason", "Colin"};
-		int[] classScores = {100, 100, 100, 100};
+		int[][] classScores = {{100, 100, 100}, {100, 100, 100},{100, 100, 100},{100, 100, 100}};
 		Person[] classMembers = new Person[classNames.length];
 
 		for(int i=0; i < classNames.length; ++i){
@@ -29,15 +34,15 @@ public class ExamApp{
 class Person{
 	private int id;
 	private String name;
-	private int score;
+	private int[] score;
 
-	public Person(int id, String name, int score){
+	public Person(int id, String name, int[] score){
 		this.id = id;
 		this.name = name;
 		this.score = score;
 	}
 
 	public String toString(){
-		return (this.id +" "+ this.name +" "+ this.score);
+		return (this.id +" "+ this.name +" "+ java.util.Arrays.toString(this.score));
 	}
 }
