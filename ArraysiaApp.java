@@ -3,6 +3,7 @@
  *	
  * @author Alan Cowap
  * @version 1.1 Allow for different size for array dimensions
+ * @version 1.2 Add Threads so there are concurrent searches
 */
 public class ArraysiaApp{
 	private static final int X_SIZE = 100;
@@ -14,8 +15,12 @@ public class ArraysiaApp{
 	public static void main(String[] args){
 		ArraysiaApp arr = new ArraysiaApp();
 		arr.hideElisa();
-		System.out.println(arr.findElisa());
+		//System.out.println(arr.findElisa());
 		//arr.checkRandom();
+		Thread t1 = new Thread(new Finder(arr.arraysia, "Hero"));
+		Thread t2 = new Thread(new Finder(arr.arraysia, "Reaper"));
+		t1.start();
+		t2.start();
 	}
 
 	/**
@@ -32,24 +37,6 @@ public class ArraysiaApp{
 	}
 	
 
-	/**
-	 * Find Elisa in the 3D world
-	 *	
-	 * @return	A String representing the x,y,z, coordinates of Elisas location
-	 */
-	private String findElisa(){
-		for(int i=0; i < arraysia.length; ++i){
-			for(int j=0; j < arraysia[i].length; ++j){
-				for(int k=0; k < arraysia[i][j].length; ++k){
-					if(arraysia[i][j][k]) return (i +","+ j +","+ k);
-				}
-			}
-		}
-		return "Can't find Elisa!";
-	}
-
-
-
 
 	/**
 	 * Check some stats (min, mean, max) of 10000 "random" values
@@ -65,6 +52,43 @@ public class ArraysiaApp{
 			total+=x;
 		}
 		System.out.println("Min: "+ min +"Mean: " + (total/10000) +" Max: "+ max + " Total: " + total);
+	}
+
+}
+
+
+
+class Finder implements Runnable{
+	private boolean[][][] arraysia;
+	private String name;
+
+	Finder(boolean[][][] arraysia, String name){
+		this.arraysia = arraysia;
+		this.name=name;
+	}
+	public void run(){
+		System.out.println(findElisa());
+	}
+
+	/**
+	 * Find Elisa in the 3D world
+	 *	
+	 * @return	A String representing the x,y,z, coordinates of Elisas location
+	 */
+	private String findElisa(){
+		for(int i=0; i < arraysia.length; ++i){
+			for(int j=0; j < arraysia[i].length; ++j){
+				for(int k=0; k < arraysia[i][j].length; ++k){
+				synchronized(Finder.class){
+					if(arraysia[i][j][k]){
+						arraysia[i][j][k] = false; //She's gone now!
+						return (this.name +" found Elisa at "+ i +","+ j +","+ k);		
+					}
+				}
+				}
+			}
+		}
+		return this.name + " can't find Elisa!";
 	}
 
 }
