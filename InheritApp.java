@@ -6,6 +6,7 @@
  * @version 1.1 Add a Cat class
  * @version 1.2 Add a Dog class
  * @version 1.3 Add an Animal superclass, and do initial refactor
+ * @version 1.4 Override Object.toString() method in Animal class
 */
 
 
@@ -23,6 +24,8 @@ public class InheritApp{
 		Dog d = new Dog("Scooby");
 		ia.testNoise(d);
 
+		System.out.println(p +" "+ c +" "+ d);
+		
 	}
 
 
@@ -30,11 +33,9 @@ public class InheritApp{
 		animal.makeNoise();
 	}
 
-	
-
 }
 
-class Animal{
+abstract class Animal{
 	private String name;
 	private String noise;
 
@@ -45,6 +46,10 @@ class Animal{
 
 	public void makeNoise(){
 		System.out.println(name + " says " + noise);
+	}
+
+	public String toString(){
+		return this.name;
 	}
 
 }
