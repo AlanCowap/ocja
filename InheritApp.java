@@ -4,7 +4,8 @@
  * @author Alan Cowap
  * @version 1.0 Basic classes (Person, InheritApp)
  * @version 1.1 Add a Cat class
- * @version 1.1 Add a Dog class
+ * @version 1.2 Add a Dog class
+ * @version 1.3 Add an Animal superclass, and do initial refactor
 */
 
 
@@ -24,58 +25,57 @@ public class InheritApp{
 
 	}
 
-	private void testNoise(Person person){
-		person.makeNoise();
+
+	private void testNoise(Animal animal){
+		animal.makeNoise();
 	}
 
-	private void testNoise(Cat cat){
-		cat.makeNoise();
+	
+
+}
+
+class Animal{
+	private String name;
+	private String noise;
+
+	public Animal(String name, String noise){
+		this.name = name;
+		this.noise = noise;
 	}
 
-	private void testNoise(Dog dog){
-		dog.makeNoise();
+	public void makeNoise(){
+		System.out.println(name + " says " + noise);
 	}
 
 }
 
-
-class Person{
-
-	private String name;
+class Person extends Animal{
+	private static final String PERSON_NOISE = "everybody make some noise";
 
 	public Person(String name){
-		this.name = name;
+		super(name, PERSON_NOISE);
 	}
 
-	public void makeNoise(){
-		System.out.println(name + " says everybody make some noise");
-	}
+
 }
 
 
-class Cat{
-
-	private String name;
+class Cat extends Animal{
+	private static final String CAT_NOISE = "meow";
 
 	public Cat(String name){
-		this.name = name;
+		super(name, CAT_NOISE);
 	}
 
-	public void makeNoise(){
-		System.out.println(name + " says Meow");
-	}
+	
 }
 
-class Dog{
-
-	private String name;
+class Dog extends Animal{
+	private static final String DOG_NOISE = "woof";
 
 	public Dog(String name){
-		this.name = name;
+		super(name, DOG_NOISE);
 	}
 
-	public void makeNoise(){
-		System.out.println(name + " says woof");
-	}
 }
 
