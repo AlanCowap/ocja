@@ -1,9 +1,10 @@
 /**
- * Sample code ...
+ * Sample code to demonstrate Inheritance, and Polymorphism
  *	
  * @author Alan Cowap
  * @version 1.0 Basic classes (Person, InheritApp)
  * @version 1.1 Add a Cat class
+ * @version 1.1 Add a Dog class
 */
 
 
@@ -18,6 +19,9 @@ public class InheritApp{
 		Cat c = new Cat("Charlie");
 		ia.testNoise(c);
 
+		Dog d = new Dog("Scooby");
+		ia.testNoise(d);
+
 	}
 
 	private void testNoise(Person person){
@@ -26,6 +30,10 @@ public class InheritApp{
 
 	private void testNoise(Cat cat){
 		cat.makeNoise();
+	}
+
+	private void testNoise(Dog dog){
+		dog.makeNoise();
 	}
 
 }
@@ -55,6 +63,19 @@ class Cat{
 
 	public void makeNoise(){
 		System.out.println(name + " says Meow");
+	}
+}
+
+class Dog{
+
+	private String name;
+
+	public Dog(String name){
+		this.name = name;
+	}
+
+	public void makeNoise(){
+		System.out.println(name + " says woof");
 	}
 }
 
