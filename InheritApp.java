@@ -8,7 +8,12 @@
  * @version 1.3 Add an Animal superclass, and do initial refactor
  * @version 1.4 Override Object.toString() method in Animal class
  * @version 1.5 Inherit an abstract method (move) from an abstract superclass and implement it
+ * @version 1.6 Create an Edible interface, and a class Chicken that implements Edible
 */
+
+interface Edible{
+	public void eatMe();
+}
 
 
 public class InheritApp{
@@ -29,6 +34,9 @@ public class InheritApp{
 		ia.testNoise(d);
 		d.move();
 
+		Chicken chick = new Chicken("Chooky");
+		ia.testEdible(chick);
+
 		System.out.println(p +" "+ c +" "+ d);
 		
 	}
@@ -40,6 +48,10 @@ public class InheritApp{
 
 	private void testMove(Animal animal){
 		animal.move();
+	}
+
+	private void testEdible(Edible edible){
+		edible.eatMe();
 	}
 
 }
@@ -62,8 +74,9 @@ abstract class Animal{
 	public String toString(){
 		return this.name;
 	}
-
+	
 }
+
 
 class Person extends Animal{
 	private static final String PERSON_NOISE = "everybody make some noise";
@@ -105,3 +118,17 @@ class Dog extends Animal{
 
 }
 
+class Chicken extends Animal implements Edible{
+	private static final String CHICKEN_NOISE = "bok";
+
+	public Chicken(String name){
+		super(name, CHICKEN_NOISE);
+	}
+	public void move(){
+		System.out.println("Move like a Chicken");
+	}
+
+	public void eatMe(){
+		System.out.println("How do I taste asks ChickenLickin");
+	}
+}
