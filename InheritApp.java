@@ -9,6 +9,7 @@
  * @version 1.4 Override Object.toString() method in Animal class
  * @version 1.5 Inherit an abstract method (move) from an abstract superclass and implement it
  * @version 1.6 Create an Edible interface, and a class Chicken that implements Edible
+ * @version 1.7 Create Plant class and subclasses.
 */
 
 interface Edible{
@@ -36,6 +37,9 @@ public class InheritApp{
 
 		Chicken chick = new Chicken("Chooky");
 		ia.testEdible(chick);
+
+		Carrot carrot = new Carrot();
+		ia.testEdible(carrot);
 
 		System.out.println(p +" "+ c +" "+ d);
 		
@@ -132,3 +136,18 @@ class Chicken extends Animal implements Edible{
 		System.out.println("How do I taste asks ChickenLickin");
 	}
 }
+
+
+class Plant{
+}
+
+
+class Carrot extends Plant implements Edible{
+	public void eatMe(){
+		System.out.println("How do I taste asks the talking Carrot");
+	}
+}
+
+class Tree extends Plant{	
+}
+
