@@ -7,6 +7,7 @@
  * @version 1.2 Add a Dog class
  * @version 1.3 Add an Animal superclass, and do initial refactor
  * @version 1.4 Override Object.toString() method in Animal class
+ * @version 1.5 Inherit an abstract method (move) from an abstract superclass and implement it
 */
 
 
@@ -15,14 +16,18 @@ public class InheritApp{
 	public static void main(String[] args){
 		System.out.println("Hello world");
 		InheritApp ia = new InheritApp();
+		
 		Person p = new Person("Tyler");		
 		ia.testNoise(p);
+		p.move();
 
 		Cat c = new Cat("Charlie");
 		ia.testNoise(c);
+		c.move();
 
 		Dog d = new Dog("Scooby");
 		ia.testNoise(d);
+		d.move();
 
 		System.out.println(p +" "+ c +" "+ d);
 		
@@ -31,6 +36,10 @@ public class InheritApp{
 
 	private void testNoise(Animal animal){
 		animal.makeNoise();
+	}
+
+	private void testMove(Animal animal){
+		animal.move();
 	}
 
 }
@@ -43,7 +52,9 @@ abstract class Animal{
 		this.name = name;
 		this.noise = noise;
 	}
-
+	
+	public abstract void move();
+	
 	public void makeNoise(){
 		System.out.println(name + " says " + noise);
 	}
@@ -61,6 +72,9 @@ class Person extends Animal{
 		super(name, PERSON_NOISE);
 	}
 
+	public void move(){
+		System.out.println("Move like a Person");
+	}
 
 }
 
@@ -72,6 +86,9 @@ class Cat extends Animal{
 		super(name, CAT_NOISE);
 	}
 
+	public void move(){
+		System.out.println("Move like a Cat");
+	}
 	
 }
 
@@ -80,6 +97,10 @@ class Dog extends Animal{
 
 	public Dog(String name){
 		super(name, DOG_NOISE);
+	}
+
+	public void move(){
+		System.out.println("Move like a Dog");
 	}
 
 }
