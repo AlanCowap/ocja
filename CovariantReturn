@@ -1,0 +1,26 @@
+/**
+ * Sample code to demonstrate Covariant Return Types of Overridden methods
+ *	
+ * @author Alan Cowap
+ * @version 1.0 Basic classes
+ * 
+ * Return types on Overridden methods: (covariant returns)
+ * The return type in the overriding method must be the same type as the
+ * return type of the overridden method, or (as of Java 5) a sub-type of
+ * the return type of the overridden method.
+ */
+
+
+class Vehicle{
+	public Engine getEngine(){return new Engine();}
+}
+
+class Car extends Vehicle{
+	//public Engine getEngine(){return new Engine();}	// override
+	// OR using a covariant return type...
+	public PetrolEngine getEngine(){return new PetrolEngine();}	// PetrolEngine extends Engine
+}
+
+class Engine{}
+
+class PetrolEngine extends Engine{}
