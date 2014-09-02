@@ -3,7 +3,7 @@
  *	
  * @author Alan Cowap
  * @version 1.0 Basic class crashing with OutOfMemoryError
- * 
+ * @version 1.1 Add try-catch clause
  * 
  * 
  * 
@@ -21,8 +21,16 @@ public class Heaper {
 	}
 	
 	private void heap(){
-		fill();
-
+//		fill();
+		try{
+			fill();
+		}catch(OutOfMemoryError mem){
+			System.out.println("Oops I'm heaped " + count +" "+ al.size());
+		}
+		catch(Error e){
+			System.out.println("An Unknown Error Occurred");
+		}
+		System.out.println("Life goes on " + al.size());
 	}
 	
 	private void fill(){
