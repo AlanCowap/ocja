@@ -3,7 +3,7 @@
  *	
  * @author Alan Cowap
  * @version 1.0 Basic class using Checked Exceptions for File IO (Requires file.txt)
- * 
+ * @version 1.1 Enhance to use try-with-resources (since J2SEv7)
  * 
  * 
  */
@@ -15,11 +15,9 @@ class FileApp{
 	}
 
 	private void echoFile(String fileName){
-		FileReader freader = null;
-		try{
+		File file = new File(fileName);
+		try(FileReader freader = new FileReader(file)){ //try-with-resources
 			char [] data = new char[100];
-			File file = new File(fileName);
-			freader = new FileReader(file);
 			int size = freader.read(data);
 			System.out.print(size + " ");
 			for(char c: data){
@@ -28,17 +26,5 @@ class FileApp{
 		}catch(IOException io){
 			System.out.println("A File IO Error Occurred");
 		}
-		finally{
-			if(null != freader){
-				try{
-					freader.close();
-				}catch(IOException io){
-					System.out.println("Unable to close file");
-				}
-			}
-		}
-
 	}
-
-
 }//class
